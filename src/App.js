@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { useState } from "react";
-import { motion } from "framer-motion";
 
 const sampleCocktails = [
   {
@@ -32,24 +30,26 @@ export default function MixologyAI() {
     <div className="p-6 max-w-3xl mx-auto">
       <h1 className="text-3xl font-bold mb-4">AI Mixology – Najdi si svůj koktejl</h1>
       <p className="mb-4">Zadej ingredience, které máš, a AI ti doporučí drinky.</p>
-      <Input 
+      <input
+        type="text"
         placeholder="Např. rum, citrón, soda..."
         value={ingredients}
         onChange={(e) => setIngredients(e.target.value)}
-        className="mb-4"
+        className="border p-2 rounded w-full mb-4"
       />
-      <Button onClick={generateCocktails} className="mb-6">Najít koktejl</Button>
-      <div className="space-y-4">
+      <button
+        onClick={generateCocktails}
+        className="bg-blue-500 text-white px-4 py-2 rounded"
+      >
+        Najít koktejl
+      </button>
+      <div className="space-y-4 mt-6">
         {suggestedCocktails.map((cocktail, index) => (
-          <motion.div key={index} whileHover={{ scale: 1.05 }}>
-            <Card>
-              <CardContent className="p-4">
-                <h2 className="text-xl font-semibold">{cocktail.name}</h2>
-                <p className="text-sm text-gray-600">{cocktail.ingredients}</p>
-                <p className="mt-2">{cocktail.instructions}</p>
-              </CardContent>
-            </Card>
-          </motion.div>
+          <div key={index} className="border p-4 rounded bg-white shadow">
+            <h2 className="text-xl font-semibold">{cocktail.name}</h2>
+            <p className="text-sm text-gray-600">{cocktail.ingredients}</p>
+            <p className="mt-2">{cocktail.instructions}</p>
+          </div>
         ))}
       </div>
     </div>
